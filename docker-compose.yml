@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:8.0
+    container_name: mysql8
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: openblog
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+    ports:
+      - '4306:3306'
+    volumes:
+      - ./mysql:/var/lib/mysql
+  php:
+    container_name: php
+    ports:
+      - 8081:80
+    volumes:
+      - ./apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./app:/var/www
+    build:
+      context: ./php
+      dockerfile: DockerFile
+    depends_on:
+      - database
+  phpma:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PASSWORD: secret
+      UPLOAD_LIMIT: 20M
+    ports:
+      - 8899:80
+  mailhog:
+    image: mailhog/mailhog
+    logging:
+      driver: 'none'
+    ports:
+      - 1025:1025 #SMTP C'est à dire le serveur
+      - 8025:8025 #Boite mail
+  
+
+
+    
