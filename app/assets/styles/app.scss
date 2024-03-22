@@ -1,0 +1,13 @@
+body {
+    background-color: skyblue;
+}
+
+.navbar{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+//Le scss doit être compilé par un compilateur en live

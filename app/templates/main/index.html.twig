@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+{% for prenom in prenoms %}
+    <h1>Hello {{ prenom }} ! ✅</h1>
+{% endfor %}
+{% endblock %}
