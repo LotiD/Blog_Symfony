@@ -41,8 +41,8 @@ services:
     logging:
       driver: 'none'
     ports:
-      - 1025:1025 #SMTP C'est à dire le serveur
-      - 8025:8025 #Boite mail
+      - 1025:1025
+      - 8025:8025
   
 
 
